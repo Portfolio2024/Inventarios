@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+Home
+{% endblock titulo %}
+{% block icon %}<i class="nav-icon fas fa-home"></i>{% endblock %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+<div class="container">
+  <img src="{% static 'img/inventarios1.png' %}" alt="Imagen de Inventario" class="img-fluid d-block mx-auto mt-3 mb-3 rounded shadow img-thumbnail" style="width: 50%;">
+  <h1>Gestión de Inventario</h1>
+  <p class="lead">
+      Bienvenido a nuestra plataforma de gestión de inventario. 
+      Aquí podrás realizar un seguimiento de tus productos, 
+      actualizar inventarios y gestionar tus existencias de manera eficiente.
+  </p>
+</div>
+{% endblock content %}

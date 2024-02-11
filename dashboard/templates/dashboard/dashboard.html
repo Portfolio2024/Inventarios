@@ -1,0 +1,151 @@
+{% extends 'home.html' %}
+{% block titulo %}
+  Dashboard
+{% endblock %}
+{% block icon %}
+  <i class="nav-icon fas fa-tachometer-alt"></i>
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+  <div class="card">
+    <div class="card-header border-0">
+      <div class="d-flex justify-content-between">
+        <h3 class="card-title">Online Store Visitors</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="d-flex">        
+      </div>
+      <div class="position-relative mb-4">
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ cantidad_pedidos }}</h3>
+                <p>Pedidos</p>
+              </div>
+              <div class="icon">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+              </div>
+              <a href="{% url 'pedidos' %}" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{ cantidad_productos }}</h3>
+                <p>Productos</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-box"></i>
+              </div>
+              <a href="{% url 'productos' %}" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+                <p>Usuarios</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+                <p>Clientes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'clientes' %}" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row my-5">
+          <div class="col-md-6">
+            <div class="bg-white">
+              <canvas id="fig1" width="400" height="300"></canvas>
+              <script>
+                var ctx = document.getElementById('fig1').getContext('2d')
+                var grafica1 = new Chart(ctx, {
+                  type: 'pie',
+                  data: {
+                    labels: ['Rosado', 'Azul', 'Amarillo', 'Verde', 'Purpura', 'naranja'],
+                    datasets: [
+                      {
+                        label: 'Productos',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+                        borderWidth: 1
+                      }
+                    ]
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          ticks: {
+                            beginAtZero: true
+                          }
+                        }
+                      ]
+                    }
+                  }
+                })
+              </script>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="bg-white">
+              <canvas id="fig2" width="400" height="300"></canvas>
+              <script>
+                var ctx = document.getElementById('fig2').getContext('2d')
+                var grafica2 = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: ['Rosado', 'Azul', 'Amarillo', 'Verde', 'Purpura', 'naranja'],
+                    datasets: [
+                      {
+                        label: 'Productos',
+                        data: [14, 2, 3, 5, 2, 3],
+                        backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+                        borderWidth: 1
+                      }
+                    ]
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          ticks: {
+                            beginAtZero: true
+                          }
+                        }
+                      ]
+                    }
+                  }
+                })
+              </script>
+            </div>
+          </div>
+        </div>        
+      </div>      
+    </div>
+  </div>
+</div>
+{% else %}
+{% include 'dashboard/index_staff.html' %}
+{% endif %}
+{% endblock %}

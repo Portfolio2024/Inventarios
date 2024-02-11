@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+    Actualizar Perfil
+{% endblock %}
+{% block icon %}<i class="nav-icon fas fa-edit"></i>{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form | crispy }}
+        {{ perfil_form | crispy }}
+        <input type="submit" class="btn btn-primary" value="Actualizar">
+        <a href="{% url 'perfil' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+</div><br><br>
+{% endblock content %}

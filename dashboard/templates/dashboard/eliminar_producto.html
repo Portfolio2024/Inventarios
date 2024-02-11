@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+{% block titulo %}
+Productos
+{% endblock titulo %}
+{% load crispy_forms_tags %}
+{% block icon %}<i class="nav-icon fas fa-boxes"></i>{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row my-2">
+            <div class="col-md-4">            
+                <hr>
+                <div class="alert alert-danger">
+                    <h4><i><i class="fas fa-exclamation-triangle"></i>&nbsp;</i>¿Estas seguro de eliminar este Producto?</h4>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <a href="{% url 'productos' %}" class="btn btn-secondary">Cancelar</a>
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

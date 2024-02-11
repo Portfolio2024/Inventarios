@@ -1,0 +1,32 @@
+{% extends 'home.html' %}
+{% block titulo %}
+
+{% endblock titulo %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row my-4">
+      <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="myTable">
+                <thead>
+                {% block columns %}
+
+                {% endblock %}
+                </thead>
+                <tbody>
+                {% block rows %}
+
+                {% endblock %}
+                </tbody>
+            </table>
+        </div>        
+            {% block crear %} <!--crear boton para la creacion del elemento-->
+            {% endblock %}  
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+    

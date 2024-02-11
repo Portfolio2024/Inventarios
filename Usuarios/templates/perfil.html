@@ -1,0 +1,153 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+  Perfil de Usuario
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block icon %}
+  <i class="nav-icon fas fa-user-check"></i>
+{% endblock %}
+{% block content %}
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- Card Perfil -->
+        <div class="card border rounded-2 shadow p-3 mb-3">
+          <div class="card-body">
+            <img class="img-thumbnail rounded-circle mb-3" src="{{ user.profile.image.url }}" alt="{{ user.username }}" style="width: 100px;">
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+            <hr />
+            <p>
+              <strong>Nombre de Usuario: </strong>{{ user.username }}
+            </p>
+            <p>
+              <strong>Nombres: </strong>{{ user.first_name }}
+            </p>
+            <p>
+              <strong>Apellidos: </strong>{{ user.last_name }}
+            </p>
+            <p>
+              <strong>Correo Eléctronico: </strong>{{ user.email }}
+            </p>
+            <p>
+              <strong>Domicilio: </strong>{{ user.profile.direccion }}
+            </p>
+            <p>
+              <strong>Localidad: </strong>{{ user.profile.localidad }}
+            </p>
+            <p>
+              <strong>Teléfono: </strong>{{ user.profile.telefono }}
+            </p>
+            <hr />
+            {% if request.user.username == 'admin' %}
+              <a href="{% url 'admin:index' %}" class="btn btn-warning w-100 mb-2">Ir al Admin</a>
+            {% endif %}
+            <a href="{% url 'editar_perfil' %}" class="btn btn-warning w-100 mb-2">Editar Perfil</a>            
+            <a href="{% url 'update_password' %}" class="btn btn-secondary w-100 mb-2">Cambiar Contraseña</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger w-100 mb-2">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card border rounded-2 shadow p-3 mb-3">
+          <div class="card-body">
+            <h2>Pedidos de tu Perfil</h2>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="myTable">
+                  <thead class="bg-success">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Cantidad (Unid)</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Fecha del pedido</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ user.id }}</th>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ pedido.cantidadPedida }}</td>
+                        <td><strong>S/.</strong> {{ pedido.precioPedido }}</td>
+                        <td>{{ pedido.fechaPedido|date:"d/m/Y" }}</td>
+                        <td>
+                            <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>&nbsp;Edit</a>
+                            <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>&nbsp;Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>            
+            <hr />
+          </div>
+        </div>
+  </div>
+  <!-- Vertically centered modal -->
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+              <div class="d-flex">
+                <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{ user.profile.image.url }}" alt="{{ user.username }}" style="width: 100px;" />
+              </div>
+              <div class="mb-3">
+                <label for="image">Imagen de perfil</label>
+                <input type="file" class="form-control" name="image" id="image" />
+              </div>
+              <div class="d-flex">
+                <div class="mb-3 mr-2">
+                  <label for="first_name">Nombre</label>
+                  <input type="text" class="form-control" name="first_name" id="first_name" value="{{ user.first_name }}" />
+                </div>
+                <div class="mb-3">
+                  <label for="last_name">Apellido</label>
+                  <input type="text" class="form-control" name="last_name" id="last_name" value="{{ user.last_name }}" />
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="mb-3">
+                  <label for="email">Correo Electronico</label>
+                  <input type="email" class="form-control" name="email" id="email" value="{{ user.email }}" disabled />
+                </div>
+
+                <div class="mb-3 mr-2">
+                  <label for="address">Domicilio</label>
+                  <input type="text" class="form-control" name="address" id="address" value="{{ user.profile.direccion }}" />
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="mb-3 mr-2">
+                  <label for="location">Localidad</label>
+                  <input type="text" class="form-control" name="location" id="location" value="{{ user.perfil.localidad }}" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="telephone">Teléfono</label>
+                  <input type="text" class="form-control" name="telephone" id="telephone" value="{{ user.perfil.telefono }}" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

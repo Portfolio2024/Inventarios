@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="pytz" />
+            <item index="1" class="java.lang.String" itemvalue="Pillow" />
+            <item index="2" class="java.lang.String" itemvalue="mysqlclient" />
+            <item index="3" class="java.lang.String" itemvalue="freeze" />
+            <item index="4" class="java.lang.String" itemvalue="psycopg2" />
+            <item index="5" class="java.lang.String" itemvalue="reportlab" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="core.erp.views.transmision" />
+          <option value="app.core.erp.forms.core" />
+          <option value="app.core.erp.urls.core" />
+          <option value="app.core.erp.urls.TransmisionListView" />
+          <option value="app.core.erp.urls.MediaTensionListView" />
+          <option value="app.core.erp.urls.BajaTensionListView" />
+          <option value="app.core.erp.urls.CatastroListView" />
+          <option value="app.core.erp.urls.SistemaAisladoListView" />
+          <option value="app.core.erp.urls.TransmisionCreateView" />
+          <option value="app.core.erp.urls.TransmisionUpdateView" />
+          <option value="app.core.erp.urls.TransmisionDeleteView" />
+          <option value="app.core.erp.urls.TransmisionFormView" />
+          <option value="app.config.settings.config" />
+          <option value="app.core.login.urls.core" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

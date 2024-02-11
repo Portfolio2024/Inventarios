@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+    Registro de Usuarios
+{% endblock titulo %}
+{% load crispy_forms_tags %}
+{% block icon %}<i class="nav-icon fas fa-user"></i>{% endblock %}
+{% block content %}
+<div class="container"><br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" class="btn btn-primary" value="Registrar">
+    </form>
+</div><br>
+{% endblock content %}
