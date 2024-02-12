@@ -5,8 +5,7 @@
     <a href="/" class="brand-link">
       <img src="{% static 'img/icono.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Inventarios Trujillo</span>
-    </a>
-
+    </a>  
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
@@ -70,10 +69,10 @@
             </a>
           </li> 
           <li class="nav-item">
-            <a href="{% url 'clientes' %}" class="nav-link">
+            <a href="{% url 'personal' %}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Clientes
+                Personal
               </p>
             </a>
           </li>
@@ -100,7 +99,7 @@
                     <p>Logout</p>
                   </a>
                 </li>
-              {% else %}
+              {% else %}  
                 <li class="nav-item">
                   <a href="{% url 'login_user' %}" class="nav-link">
                     <i class="fas fa-user-check nav-icon"></i>
@@ -108,6 +107,7 @@
                   </a>
                 </li>                
               {% endif %}
+          {% if user.is_authenticated %}
               <li class="nav-item">
                 <a href="{% url 'perfil' %}" class="nav-link">
                   <i class="fas fa-user-lock nav-icon"></i>
@@ -116,6 +116,7 @@
               </li>              
             </ul>
           </li>
+          
           <li class="nav-header"><h6>Opciones</h6></li>
           <li class="nav-item">
             <a href="{% url 'update_password' %}" class="nav-link">
@@ -133,6 +134,7 @@
               </p>
             </a>
           </li>
+          {% endif %}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

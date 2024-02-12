@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Producto, Pedido, Proveedor
+from .models import Producto, Pedido, Personal
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .forms import Formulario_Producto
+from django.contrib.auth.models import User
 
 @login_required()
 def index(request):
@@ -70,9 +71,23 @@ def pedidos(request):
     return render(request, 'dashboard/pedidos.html', {'pedidos': pedidos, 'title': title, 'cantidad_pedidos': cantidad_pedidos})
 
 @login_required()
-def clientes(request):
-    title = "Clientes"
-    return render(request, 'dashboard/clientes.html', {'title': title})
+def personal(request):
+    title = "Personal"
+    personal = User.objects.all()
+    context = {
+        'personal': personal,
+        'title': title
+    }
+    return render(request, 'dashboard/personal.html', context)
+
+def personal_detalle(request, id):
+    title = "Detalle del Personal"
+    personal = User.objects.get(id=id)
+    context = {
+        'personal': personal,
+        'title': title
+    }
+    return render(request, 'dashboard/personal_detalle.html', context)
 
 def logout_user(request):
     logout(request)

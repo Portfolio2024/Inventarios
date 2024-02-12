@@ -7,9 +7,9 @@ CATEGORIA = (
     ('Comida', 'Comida')
 )
 
-class Proveedor(models.Model):
+class Personal(models.Model):
     nombre = models.CharField(max_length=50, null=True)
-    teléfono = models.CharField(max_length = 50)
+    telefono = models.CharField(max_length = 50)
     correo = models.CharField(max_length = 50)
 
     def __str__(self):
@@ -21,7 +21,7 @@ class Proveedor(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, null=True)
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, null=True)
+    proveedor = models.ForeignKey(Personal, on_delete=models.CASCADE, null=True)
     categoria = models.CharField(max_length=50, choices = CATEGORIA, null = True)
     cantidad = models.PositiveIntegerField(null=True)
     precio = models.PositiveIntegerField(null=True)

@@ -1,0 +1,47 @@
+{% extends 'list.html' %}
+{% block titulo %}
+Clientes
+{% endblock titulo %}
+{% block icon %}<i class="fas fa-users"></i>{% endblock %}
+{% block content %}
+<div class="container my-3">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Card Perfil -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <h4>Información del Personal</h4>
+                <hr>
+                <table class="table bg-white table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Nombre</th>
+                            <td>{{ personal.first_name }} {{ personal.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>{{ personal.email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Telefóno</th>
+                            <td>{{ personal.profile.telefono }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Dirección</th>
+                            <td>{{ personal.profile.direccion }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr /> 
+                <a href="{% url 'personal' %}" class="btn btn-danger w-100 mb-2">Cancelar</a> 
+            </div>
+            <div class="col-md-4">
+                <img class="img-thumbnail" src="{{ personal.profile.image.url }}" alt="{{ personal.username }}" style="width: 100%;">
+            </div>                      
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>
+{% endblock content %}

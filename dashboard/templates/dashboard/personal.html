@@ -1,0 +1,33 @@
+{% extends 'list.html' %}
+{% block titulo %}
+Clientes
+{% endblock titulo %}
+{% block icon %}<i class="fas fa-users"></i>{% endblock %}
+{% block columns %}
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Acciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for personal in personal %}
+        <tr>
+            <th scope="row">{{ personal.id }}</th>
+            <td>{{ personal.first_name }}</td>
+            <td>{{ personal.email }}</td>
+            <td>{{ personal.profile.telefono }}</td>
+            <td>
+                <a href="{% url 'personal_detalle' personal.id %}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i>&nbsp;&nbsp;View</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+{% block crear %}
+    <a href="#" class="btn btn-primary btnTest">
+        <i class="fas fa-plus"></i> Nuevo registro
+    </a>
+{% endblock %}
